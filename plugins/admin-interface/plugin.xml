@@ -1,0 +1,31 @@
+<plugin name='admin-interface' version='0.6.5-OGUMI-SNAPSHOT' grailsVersion='2.0.0 &gt; *'>
+  <author>Naymspace</author>
+  <authorEmail>fs@naymspace.de</authorEmail>
+  <title>Grails Admin Interface - Patched</title>
+  <description>
+		Grails Admin allows you to easily create an administration back-office with default styles and
+		operations. You cand extend and configure this administrator to improve the experience of your
+		users.
+
+		The default admin also provides an API to ease the integration with already existing
+		administration back-offices and integration with Spring Security (version 1 and 2) to use the
+		security behaviour of your application.
+
+		This is a similar project to those existing in others MVC frameworks such as Django Admin,
+		Sonata Admin or Rails Active Admin.
+		</description>
+  <documentation>http://kaleidos.github.io/grails-admin-interface</documentation>
+  <type>AdminInterfaceGrailsPlugin</type>
+  <resources>
+    <resource>GrailsAdminDefaultConfig</resource>
+    <resource>GrailsAdminUrlMappings</resource>
+    <resource>net.kaleidos.plugins.admin.GrailsAdminPluginApiController</resource>
+    <resource>net.kaleidos.plugins.admin.GrailsAdminPluginCallbackApiController</resource>
+    <resource>net.kaleidos.plugins.admin.GrailsAdminPluginUIController</resource>
+    <resource>net.kaleidos.plugins.admin.GrailsAdminPluginDataService</resource>
+    <resource>net.kaleidos.plugins.admin.renderer.GrailsAdminPluginHtmlRendererService</resource>
+    <resource>net.kaleidos.plugins.admin.renderer.GrailsAdminPluginJsonRendererService</resource>
+    <resource>net.kaleidos.plugins.admin.widget.GrailsAdminPluginWidgetService</resource>
+    <resource>net.kaleidos.plugins.admin.GrailsAdminPluginTagLib</resource>
+  </resources>
+</plugin>

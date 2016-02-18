@@ -1,0 +1,19 @@
+{
+	"your": "",
+	"leftAxis": "left axis",
+	"rightAxis": "right axis",
+	"total cumulated harvest": "Sum catch",
+	"total cumulated return": "Sum return",
+	"average total cumulated return": "Average common return",
+	"cumulated harvest": "Sum individual catch",
+	"cumulated return": "Sum individual return",
+	"average harvest": "Average catch",
+	"average return": "Average return",
+	"return": "Return",
+	"harvest": "Catch",
+	"resource": "Resource",
+	"effort": "Effort",
+	"xLegend": "Time in seconds",
+	"y0Legend": "Number of fishes",
+	"y1Legend": "Catch in number of fishes"
+}

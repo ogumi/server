@@ -1,0 +1,44 @@
+*How would the plugin select automatically this widget?*
+
+On domain class with a constraint of inList
+
+{code}
+String country
+static constraints = {
+    country inList: ["Canada", "Spain", "USA"]
+}
+{code}
+
+
+*How can I configure this widget?*
+
+There are several ways, described on the [configuration|guide:configuration] section.
+
+One of the easies ways is on the file Config.groovy
+
+You can define the list of valid options with a map also on configuration
+
+{code}
+grails.plugin.admin.domain.Test = {
+    widget "country", "net.kaleidos.plugins.admin.widget.SelectWidget", options: ["Canada":"Canada", "Spain":"Spain", "USA":"USA"]
+}
+{code}
+
+
+
+*Sample of html render*
+
+{code}
+<select name="country" class="form-control">
+    <option value="">--</option>
+    <option value="Canada">Canada</option>
+    <option selected="selected" value="Spain">Spain</option>
+    <option value="USA">USA</option>
+</select>
+{code}
+
+{table}
+Sample image
+!Widgets/SelectWidget.png!
+!Widgets/SelectWidget1.png!
+{table}

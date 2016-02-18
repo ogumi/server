@@ -1,0 +1,35 @@
+*How would the plugin select automatically this widget?*
+
+On domain class attributes of type String with a constraint of email
+
+{code}
+String email
+static constraints = {
+    email email:true
+}
+{code}
+
+
+*How can I configure this widget?*
+
+There are several ways, described on the [configuration|guide:configuration] section.
+
+One of the easies ways is on the file Config.groovy
+
+{code}
+grails.plugin.admin.domain.Test = {
+    widget "email", "net.kaleidos.plugins.admin.widget.EmailInputWidget"
+}
+{code}
+
+
+*Sample of html render*
+
+{code}
+<input type="email" value="paul@example.com" name="email" class="form-control" />
+{code}
+
+{table}
+Sample image
+!Widgets/EmailInputWidget.png!
+{table}

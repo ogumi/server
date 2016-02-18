@@ -1,0 +1,19 @@
+{
+	"your": "",
+	"leftAxis": "linke Achse",
+	"rightAxis": "rechte Achse",
+	"total cumulated harvest": "Summe gemeinsamer Fang",
+	"total cumulated return": "Summe gemeinsamer Ertrag",
+	"average total cumulated return": "Durchschnittlicher gemeinsamer Ertrag",
+	"cumulated harvest": "Summe eigener Fang",
+	"cumulated return": "Summe eigener Ertrag",
+	"average harvest": "Durchschnittlicher Fang",
+	"average return": "Durchschnittlicher Ertrag",
+	"return": "Ertrag",
+	"harvest": "Fang",
+	"resource": "Ressource",
+	"effort": "Aufwand",
+	"xLegend": "Zeit in Sekunden",
+	"y0Legend": "Anzahl Fische",
+	"y1Legend": "Fang in Anzahl Fische"
+}

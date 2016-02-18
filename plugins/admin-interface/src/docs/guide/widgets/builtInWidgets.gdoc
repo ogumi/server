@@ -1,0 +1,61 @@
+Grails Admin Plugin brings to you several built in widgets, that you can use. The complete list of Built in widgets is this:
+
+{table}
+Built in Widgets
+[CheckboxInputWidget|guide:checkboxInputWidget]
+[DateInputWidget|guide:dateInputWidget]
+[DecimalInputWidget|guide:decimalInputWidget]
+[EmailInputWidget|guide:emailInputWidget]
+[EnumWidget|guide:enumWidget]
+[HiddenInputWidget|guide:hiddenInputWidget]
+[LabelWidget|guide:labelWidget]
+[LocaleInputWidget|guide:localeInputWidget]
+[MapWidget|guide:mapWidget]
+[NumberInputWidget|guide:numberInputWidget]
+[PasswordInputWidget|guide:passwordInputWidget]
+[RelationPopupOneWidget|guide:relationPopupOneWidget]
+[RelationSelectMultipleWidget|guide:relationSelectMultipleWidget]
+[RelationSelectWidget|guide:relationSelectWidget]
+[RelationTableWidget|guide:relationTableWidget]
+[SelectWidget|guide:selectWidget]
+[TextAreaWidget|guide:textAreaWidget]
+[TextInputWidget|guide:textInputWidget]
+[UrlInputWidget|guide:urlInputWidget]
+{table}
+
+
+
+If you not specify otherwise on configuration, Grails Admin will select a built-in widget by the type of the attribute(sometimes modified by constraints or by name):
+
+{table}
+*name* | *Type* | *Constraint* | *Widget*
+  - | - | @inList@ | [RelationSelectWidget|guide:relationSelectWidget]
+  - | @Byte@ | - | [NumberInputWidget|guide:numberInputWidget]
+  - | @Short@ | - | [NumberInputWidget|guide:numberInputWidget]
+  - | @Integer@ | - | [NumberInputWidget|guide:numberInputWidget]
+  - | @Long@ | - | [NumberInputWidget|guide:numberInputWidget]
+  - | @Float@| - | [DecimalInputWidget|guide:decimalInputWidget]
+  - | @Double@| - | [DecimalInputWidget|guide:decimalInputWidget]
+  - | @Character@| - | [TextInputWidget|guide:textInputWidget]
+  - | @String@| - | [TextInputWidget|guide:textInputWidget]
+  - |  - |@email@| [EmailInputWidget|guide:emailInputWidget]
+  - |  - |@url@| [UrlInputWidget|guide:urlInputWidget]
+  - | @Date@| - | [DateInputWidget|guide:dateInputWidget]
+  - | @Boolean@| - | [CheckboxInputWidget|guide:checkboxInputWidget]
+  - | @Enum@| - | [EnumWidget|guide:enumWidget]
+  - | @Locale@| - | [LocaleInputWidget|guide:localeInputWidget]
+  - | @File@| - | [LabelWidget|guide:labelWidget]
+  - | @Collection of other Domain Class@| - | [RelationTableWidget|guide:relationTableWidget]
+  - | @Collection@| - | [LabelWidget|guide:labelWidget]
+  - | <Other Domain Class>| - | [RelationPopupOneWidget|guide:relationPopupOneWidget]
+  - | _Unknown_| - | [LabelWidget|guide:labelWidget]
+  id | - | - | [LabelWidget|guide:labelWidget]
+  dateCreated | - | - | [LabelWidget|guide:labelWidget]
+  dateCreated | - | - | [LabelWidget|guide:labelWidget]
+  version | - | - | [LabelWidget|guide:labelWidget]
+
+{table}
+
+
+
+@LabelWidget@ is used when we don't know how to handle a type or his value, like @Currency@, @File@ or @Collection@ types, in order to don't scramble your data

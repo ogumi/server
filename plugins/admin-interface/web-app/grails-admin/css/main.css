@@ -1,0 +1,76 @@
+body {
+  padding-top: 70px; }
+
+.list-select-head {
+  width: 30px; }
+
+.list-actions .btn {
+  margin-right: 10px; }
+  .list-actions .btn:last-child {
+    margin-right: 0; }
+
+.dashboard span {
+  color: #000; }
+.dashboard tr td:first-child {
+  font-weight: bold; }
+
+.main-form input:not([type='button']):not([type='checkbox']), .main-form select, .main-form .select2-container {
+  display: block;
+  width: 650px;
+  max-width: 100%; }
+
+input.form-control[type='checkbox'] {
+  width: auto;
+  height: auto; }
+
+.form-options .btn-group {
+  margin-right: 10px; }
+
+.object-nav .btn-group {
+  float: right; }
+
+.logout {
+  line-height: 50px;
+  float: right; }
+  .logout a {
+    margin-left: 10px; }
+
+thead .up span:after, thead .down:hover span:after {
+  content: "\25B2"; }
+thead .down span:after, thead .up:hover span:after, thead .no-sorted:hover span:after {
+  content: "\25BC"; }
+thead a {
+  color: #000; }
+  thead a:hover {
+    color: #000;
+    text-decoration: none; }
+
+.table-container {
+  width: 100%;
+  overflow-x: auto; }
+
+.panel-heading a:after {
+  font-family: 'Glyphicons Halflings';
+  content: "\e114";
+  float: right;
+  color: grey; }
+
+.panel-heading a.collapsed:after {
+  content: "\e080"; }
+
+.grails-admin-list-table tr {
+  cursor: pointer; }
+  .grails-admin-list-table tr:hover {
+    background-color: #F5F5F5; }
+
+.container.tight{
+    max-width: 600px;
+}
+
+.container.narrow{
+    max-width: 900px;
+}
+
+.file-preview-image{
+    height: 80px !important;
+}

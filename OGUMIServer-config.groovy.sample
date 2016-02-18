@@ -1,0 +1,3 @@
+grails.ogumi.name = "TestServer"
+grails.ogumi.publish = true
+grails.ogumi.publishedContextPath = "OGUMIServer"

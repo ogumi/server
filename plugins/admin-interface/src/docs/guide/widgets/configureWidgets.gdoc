@@ -1,0 +1,19 @@
+For basic widget configuration, please see [Per Domain Configuration|guide:domainConfig] section.
+
+
+h3. Special properties
+
+*help*
+
+If you add a 'help' string property to a widget, it will be displayed on the GUI.
+
+{code}
+grails.plugin.admin.domain.Room = {
+    widget "board", help:"Has the room a blackboard?"
+}
+{code}
+
+{table}
+Sample image
+!Widgets/WidgetHelp.png!
+{table}

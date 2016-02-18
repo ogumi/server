@@ -1,0 +1,17 @@
+.idea/
+server.iml
+server-grailsPlugins.iml
+target/
+
+OGUMIServer-config.properties
+
+web-app/uploads/
+
+devDb*
+ogumi-model-server/
+web-client/
+
+*~
+*.swp
+*.iml
+out

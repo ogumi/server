@@ -1,0 +1,44 @@
+h4. Installation
+
+To install you should include in your BuildConfig.groovy
+
+{code}
+plugins {
+    runtime "\:admin\:<version>.<minorVersion>"
+}
+{code}
+
+It's recommended that you include a Spring Security Core plugin to secure the administration.
+
+{code}
+plugins {
+    // Spring Security v1.X , example:
+    compile "\:spring-security-core\:1.2.7.3"
+}
+{code}
+
+{code}
+plugins {
+    // ... or v2.X , example:
+    compile "\:spring-security-core\:2.0-RC3"
+}
+{code}
+
+h4. Configuration
+
+Is not mandatory, but to see plugin works you have to edit your app @Config.groovy@ and include the
+list of domains to start working with:
+{code}
+grails.plugin.admin.domains = [ "conferences.Talk", "conferences.Speaker" ]
+{code}
+
+h4. Extend Behaviour with Custom Widgets
+
+You can also extend the default behaviour creating your own custom widgets.
+See [Custom Widgets] section for more information.
+
+{code}
+grails.plugin.admin.domain.Conference = {
+    widget "coordinates", "sample.MapWidget", height:400, width:600
+}
+{code}

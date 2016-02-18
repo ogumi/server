@@ -1,0 +1,58 @@
+introduction:
+    title: Introduction
+    versions: Release history and changelog
+    contributors: Contributors
+    dependencies: Dependencies
+    installation: Installation
+    sample: Sample
+
+screenshots:
+    title: Screenshots
+
+
+structure:
+    title: Plugin Structure
+
+configuration:
+    title: Plugin Configuration
+    springSecurityConfig: Integration with Spring Security
+    globalConfig: Global Configuration
+    domainConfig: Per Domain Configuration
+
+widgets:
+    title: Widgets
+    configureWidgets: Configure widgets
+    stylingWidgets: Styling widget instances
+    builtInWidgets:
+        title: Built in widgets
+        checkboxInputWidget: CheckboxInputWidget
+        dateInputWidget: DateInputWidget
+        decimalInputWidget: DecimalInputWidget
+        emailInputWidget: EmailInputWidget
+        enumWidget: EnumWidget
+        hiddenInputWidget: HiddenInputWidget
+        labelWidget: LabelWidget
+        localeInputWidget: LocaleInputWidget
+        mapWidget: MapWidget
+        numberInputWidget: NumberInputWidget
+        passwordInputWidget: PasswordInputWidget
+        relationPopupOneWidget: RelationPopupOneWidget
+        relationSelectWidget: RelationSelectWidget
+        relationTableWidget: RelationTableWidget
+        relationSelectMultipleWidget: RelationSelectMultipleWidget
+        selectWidget: SelectWidget
+        textAreaWidget: TextAreaWidget
+        textInputWidget: TextInputWidget
+        urlInputWidget: UrlInputWidget
+
+customWidgets:
+    title: Custom Widgets. Guide to Widget developers
+
+contributing:
+    title: Contributing. Guide to Plugin developers
+
+roadmap:
+    title: Roadmap
+
+faq:
+    title: FAQ

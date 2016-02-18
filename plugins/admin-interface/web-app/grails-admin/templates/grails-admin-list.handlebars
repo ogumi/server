@@ -1,0 +1,16 @@
+<div class="table-container">
+    <table class="table table-bordered">
+        {{#each list}}
+          {{#unless exclude}}
+            <tr>
+                <td>
+                    <input {{#if exclude}}disabled{{/if}} class="relationpopup-radio" type="radio" name="elementId" value="{{id}}" data-txt="{{__text__}}"></input>
+                </td>
+                <td>
+                    {{__text__}}
+                </td>
+            </tr>
+          {{/unless}}
+        {{/each}}
+    </table>
+</div>

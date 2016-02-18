@@ -1,0 +1,41 @@
+This widget shows an iframe with a google maps view of the value, and an input text to show and update that value
+
+*How would the plugin select automatically this widget?*
+
+This widget won't be automatically selected, you will have to configure it.
+
+
+*How can I configure this widget?*
+
+There are several ways, described on the [configuration|guide:configuration] section.
+
+One of the easies ways is on the file Config.groovy
+
+{code}
+grails.plugin.admin.domain.Test = {
+    widget "address", "net.kaleidos.plugins.admin.widget.MapWidget"
+}
+{code}
+
+*Sample of html render*
+{code}
+<div view="mapwidget" class="map-widget">
+    <div>
+        <span class="map-container">
+            <iframe width="425" height="350" frameborder="0"
+                src="https://maps.google.com/maps?f=q&amp;q=Madrid, Spain&amp;output=embed"
+                marginwidth="0" marginheight="0" scrolling="no">
+            </iframe>
+        </span>
+        <input type="button" value="Refresh" class="map-widget-refresh js-map-widget-refresh">
+    </div>
+    <div>
+        <input type="text" value="Madrid, Spain" name="address" class="form-control map-widget-text js-map-widget-text">
+    </div>
+</div>
+{code}
+
+{table}
+Sample image
+!Widgets/MapWidget.png!
+{table}

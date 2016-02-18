@@ -1,0 +1,316 @@
+Besides the built in widgets, you can create your own custom widgets.
+
+Edit your app @Config.groovy@ and add this line for a domain class and property, where you define
+the custom widget class and some properties to configure.
+
+Example:
+
+{code}
+grails.plugin.admin.domain.Conference = {
+    widget "coordinates", "sample.MapWidget", height:400, width:600
+}
+{code}
+
+In this example we configure for domain class @Test@ and property @address@ a custom widget call
+@MyTestWidget@. Some properties could be specified and will we copied directly to HTML component.
+
+
+h2. Groovy side
+
+h3. Inherit from Widget
+
+Your custom widget should inherit from the class net.kaleidos.plugins.admin.widget.Widget. That is
+an abstract class, that has only one methods that you must implement:
+
+* *String render()*: The method to render your widget as html
+
+Also, Widget define sever methods that you can overwrite if you need them
+
+* *String renderBeforeForm()*: Render code html *before* the form that contains all the widgets
+* *String renderAfterForm()*: Render code html *after* the form that contains all the widgets
+* *Object getValueForJson()*: Returns an object (usually an string) that whould be used in order to represent the current value of the widget when the widget is represented as JSON.
+* *List<Map> getAssets()*: Returns the list of assets (css and js) needed for the html representation of this widget. The list should be a Map containing the same elements that the tag "g:resource" accepts [http://grails.org/doc/latest/ref/Tags/resource.html|http://grails.org/doc/latest/ref/Tags/resource.html].
+
+Last, there are several properties that you can use. Note that you don't write this properties, it\
+is GrailsAdminPlugin who assign the values. You should use this properties as read-only.
+
+* *Object value*: The current value of the widget. Its type will depend on the actual widget. For example, on a TextInputWidget will be a String, and on DateInputWidget will be a Date.
+* *Map htmlAttrs*: A map of properties to be rendered on the html representation, like the name, if it is required, etc.
+* *Map internalAttrs*: A map of properties internal for the widget. Remember that the widget represents a property of a domain object, so:
+** *domainObject*: This is that domain object. Note that it could be null (for example, on the create screen)
+** *propertyName*: This is the name of that property.
+** *domainClass*: This is the class of that object.
+** *relatedDomainClass*: If the property is a relation with another domain class, this is that domain class. It could be null.
+
+
+h3. Error handling
+
+If you want you can handle errors (expected or unspected) thrown by your widget. You should extend
+the method.
+
+{code}
+String renderError(Throwable t)
+{code}
+
+This method will be called after any exception thrown by your widget. So you can render your custom
+information.
+
+When the widget throws an exception on the method "updateValue" (which parsers the form input to your
+custom types inside the widget) any error will be displayed in the form as if a validation error was
+displayed.
+
+h3. Sample
+
+With all this, lets make a sample Widget. We will create a custom widget that show an addres on a map. It will be used for properties of type String.
+
+*Create the Widget Class*
+
+We will create our widget on the file src/groovy/sample/MapWidget.groovy
+
+{code}
+package sample
+
+import net.kaleidos.plugins.admin.widget.Widget
+
+class MapWidget extends Widget {
+
+    @Override
+    String render() {
+        return ""
+    }
+}
+{code}
+
+
+*Create the render method*
+
+We will have the address on the value attribute of the widget.
+We want that out widget create an iframe showing the address on the map.
+
+{code}
+String render() {
+    def html = new StringBuilder()
+    html.append("<div>")
+    html.append("<iframe width='425' height='350' frameborder='0' scrolling='no' marginheight='0'
+        marginwidth='0'")
+    html.append("src='https://maps.google.com/maps?f=q&amp;q=${value}&amp;output=embed'")
+    html.append("></iframe>")
+    html.append("</div>")
+
+    return html
+}
+{code}
+
+*Upgrade the render method to allow edition*
+
+The render method is cool, and show the address on a map, but we want also to allow to update the
+address. In order to do so, we need to add an input field below the map. Also, it is important to
+render the htmlAttrs, in order to get all the properties needed.
+So we must add several lines to the render method
+
+{code}
+String render() {
+    def html = new StringBuilder()
+    html.append("<div>")
+    html.append("<iframe width='425' height='350' frameborder='0' scrolling='no' marginheight='0'
+        marginwidth='0'")
+    html.append("src='https://maps.google.com/maps?f=q&amp;q=${value}&amp;output=embed'")
+    html.append("></iframe>")
+    html.append("</div>")
+
+    html.append("<input class='form-control' type='text' ")
+    htmlAttrs.each{key, value ->
+        html.append("$key='${value}' ")
+    }
+    html.append("value='${value}' />")
+    return html
+}
+{code}
+
+
+{note}
+When you write html as this example, there is a risk of an
+[XSS attack |http://en.wikipedia.org/wiki/Cross-site_scripting]
+(for example, if the value is something like "<script>alert(0)</script>). So, instead of write the
+value directly, you should write it as value.encodeAsHTML(). Also, you should be carefull with the
+null values.
+
+So you can write rhe values as
+{code}
+${value?:value.encodeAsHTML():''}
+{code}
+{note}
+
+
+h2. Frontend side
+
+Most widgets won't need special css nor js. But if you need them, you can use them you can specify a custom method getAssets on the widget.
+
+
+h3. Sample
+
+We will upgrade our MapWidget with a button that refresh the map with the current address. In order
+to do so, we will use a js and a css file.
+
+{code}
+List<Map> getAssets() {
+    return [
+        [ dir: "js", file: "admin/map.js", absolute: true ],
+        [ dir: "css", file: "admin/map.css", absolute: true ]
+    ]
+}
+{code}
+
+
+Also, we will modify the render method with the code to show the button, and also with some divs to
+contain the elements, and several css classes.
+
+{code}
+String render() {
+    def html = new StringBuilder()
+    html.append("<div class='map-widget'>")
+    html.append("<div>")
+    html.append("<span class='map-container'>")
+    html.append("<iframe width='425' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'")
+    html.append("src='https://maps.google.com/maps?f=q&amp;q=${value}&amp;output=embed'")
+    html.append("></iframe>")
+    html.append("</span>")
+    html.append("<input type='button' class='map-widget-refresh js-map-widget-refresh' value='Refresh' />")
+    html.append("</div>")
+
+    html.append("<div>")
+
+    html.append("<input type='text' class='form-control js-map-widget-text' ")
+    htmlAttrs.each{key, value ->
+        html.append("$key='${value}' ")
+    }
+    html.append("value='${value}' />")
+    html.append("</div>")
+    html.append("</div>")
+    return html
+}
+{code}
+
+
+*CSS*
+
+In order to give the button some style, we created the file WEB-APP/css/admin/map.css
+
+{code}
+.map-widget-refresh {
+    background-color: #4040EA;
+    border: 0 none;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    padding: 5px;
+}
+{code}
+
+
+*JS*
+
+And finally, to refresh the map, we have created the following javascript code on the file
+WEB-APP/js/admin/map.js
+
+{code}
+$(".map-widget").on( "click", ".js-map-widget-refresh", function(event) {
+    var value = $(this).closest(".map-widget").find(".js-map-widget-text").val();
+    var html = "<iframe width='425' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'";
+    html += "src='https://maps.google.com/maps?f=q&amp;q=" + value + "&amp;output=embed'></iframe>";
+    $(this).closest(".map-widget").find(".map-container").html(html);
+});
+{code}
+
+{note}
+NOTE: GrailsAdminPlugin uses jquery, so it is available for your custom widgets also
+{note}
+
+h2. More Frotend features
+
+To customize the widget resources you must override the getAssets method
+
+{code}
+@Override
+List<Map> getAssets() {
+    return [
+        [ dir: "mywidget", file: "example1.js", absolute: true ],
+        [ dir: "mywidget", file: "example2.js", absolute: true ],
+        [ dir: "mywidget", file: "example1.css", absolute: true ],
+        [ dir: "mywidget", file: "example2.css", absolute: true ],
+        [ dir: "mywidget/templates", file: "template1.handlebars", absolute: true ],
+        [ dir: "mywidget/templates", file: "template2.handlebars", absolute: true ],
+    ]
+}
+{code}
+
+h3. GrailsAdmin Javascript utils
+
+GrailsAdmin has views & services that you can use in your widget if you want
+
+*Views*
+
+{code}
+//js file
+//creating view
+app.view('formView', ['$el'], function ($el) {
+    //view code
+});
+
+//html file
+// call view
+<div view='deleteModal'></div>
+{code}
+
+The `$el` is a Jquery object with the dom element.
+
+*Services*
+
+{code}
+//create
+app.service('paginationService', [], function () {
+    //service code
+
+    return {
+        method: function () {
+            //method code
+        }
+    };
+});
+
+//use
+app.view('formView', ['$el', 'paginationService'], function ($el, paginationService) {
+   paginationService.method();
+});
+{code}
+
+h3. Javascript libraries
+
+[parsley|https://github.com/guillaumepotier/Parsley.js]
+[bootstrap|https://github.com/twbs/bootstrap]
+[bootstrap-datepicker|http://www.eyecon.ro/bootstrap-datepicker/]
+[handlebars|http://handlebarsjs.com/]
+[jQuery|http://jquery.com/]
+[lodash|http://lodash.com/]
+[select2|http://ivaynberg.github.io/select2/]
+
+*Handlebars*
+
+If you add handlebars in your assets grailsAdmin creates a script tag at the end of page with the content of the handlebars file. The id of the script tag is the filename without the extension
+
+{code}
+<script id="filename" type="text/x-handlebars-template">
+        <h1>handlebars template</h1>
+
+        <p>{{text}}</p>
+</script>
+{code}
+
+You can use templateService to get the compiled html
+
+{code}
+app.view('formView', ['$el', 'templateService'], function ($el, templateService) {
+     var templateVars = {title: 'exaple var'};
+     var html = templateService.get('filename', templateVars);
+});
+{code}
