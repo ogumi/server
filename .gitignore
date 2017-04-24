@@ -10,6 +10,7 @@ web-app/uploads/
 devDb*
 ogumi-model-server/
 web-client/
+.slcache
 
 *~
 *.swp
