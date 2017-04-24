@@ -87,7 +87,6 @@ The OGUMIServer is distributed under Apache-2.0, see LICENSE for more details.
 Have a look into [THIRD-PARTY.txt](./THIRD-PARTY.txt) for informations about
 the licenses of the dependencies of the OGUMIServer.
 
-
 **Important notice**:
 [Javascript Charts by amcharts](http://www.amcharts.com/javascript-charts/)
 is only free to use and requires a commercial license if you do not include a

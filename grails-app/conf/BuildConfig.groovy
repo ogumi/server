@@ -57,9 +57,6 @@ grails.project.dependency.resolution = {
 		repositories {
 				inherits true // Whether to inherit repository definitions from plugins
 
-		mavenRepo 'http://luke:8081/artifactory/remote-repos'
-        mavenRepo 'http://luke:8081/artifactory/modules-snapshot-local'
-
         grailsPlugins()
         grailsHome()
         mavenLocal()
@@ -84,8 +81,7 @@ grails.project.dependency.resolution = {
 				}
 				compile 'com.opencsv:opencsv:3.3',
                         'org.apache.commons:commons-math3:3.4.1',
-                        'com.naymspace.ogumi:ogumi-model:1.2.1-SNAPSHOT'
-
+                        'com.naymspace.ogumi:ogumi-model:1.2-SNAPSHOT'
 		}
 
 		plugins {
