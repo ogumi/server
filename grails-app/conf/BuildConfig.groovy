@@ -55,17 +55,14 @@ grails.project.dependency.resolution = {
 		legacyResolve false // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
 
 		repositories {
-				inherits true // Whether to inherit repository definitions from plugins
+			inherits true // Whether to inherit repository definitions from plugins
 
-        grailsPlugins()
-        grailsHome()
-        mavenLocal()
-        grailsCentral()
-        mavenCentral()
-        // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
-        //mavenRepo "http://repository.codehaus.org"
-        //mavenRepo "http://download.java.net/maven/2/"
-        //mavenRepo "http://repository.jboss.com/maven2/"
+			mavenRepo 'https://artefacts.naymspace.de/repository/snapshots'
+			grailsPlugins()
+			grailsHome()
+			mavenLocal()
+			grailsCentral()
+			mavenCentral()
 		}
 
 		dependencies {
@@ -82,6 +79,7 @@ grails.project.dependency.resolution = {
 				compile 'com.opencsv:opencsv:3.3',
                         'org.apache.commons:commons-math3:3.4.1',
                         'com.naymspace.ogumi:ogumi-model:1.2-SNAPSHOT'
+
 		}
 
 		plugins {
